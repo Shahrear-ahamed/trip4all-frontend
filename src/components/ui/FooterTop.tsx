@@ -12,7 +12,7 @@ export default function FooterTop() {
     { link: "/service", name: "Service" },
   ];
   return (
-    <div className="container px-6 pt-12 mx-auto">
+    <div className="container pt-12 mx-auto">
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <h1 className="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">
@@ -34,7 +34,7 @@ export default function FooterTop() {
               <Link
                 key={index}
                 href={item.link}
-                className="text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                className="text-gray-600 text-sm transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
                 aria-label="Facebook">
                 {item.name}
               </Link>

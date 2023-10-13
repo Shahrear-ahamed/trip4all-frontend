@@ -22,30 +22,28 @@ export default function FooterBottom() {
     },
   ];
   return (
-    <div className="container">
-      <div className="max-w-7xl py-4 mx-auto flex items-center justify-between">
-        <Link href="/">
-          <Image
-            width={150}
-            height={50}
-            className="w-auto h-7"
-            src={logo}
-            alt=""
-          />
-        </Link>
+    <div className="container py-4 mx-auto flex items-center justify-between">
+      <Link href="/">
+        <Image
+          width={150}
+          height={50}
+          className="w-auto h-7"
+          src={logo}
+          alt=""
+        />
+      </Link>
 
-        <div className="flex -mx-2">
-          {footerIons.map((item, index) => (
-            <Link
-              target="_blank"
-              key={index}
-              href={item.link}
-              className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-              aria-label="Facebook">
-              {item.icon}
-            </Link>
-          ))}
-        </div>
+      <div className="flex">
+        {footerIons.map((item, index) => (
+          <Link
+            target="_blank"
+            key={index}
+            href={item.link}
+            className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+            aria-label="Facebook">
+            {item.icon}
+          </Link>
+        ))}
       </div>
     </div>
   );
