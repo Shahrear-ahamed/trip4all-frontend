@@ -21,7 +21,7 @@ export default function NewsLetter() {
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
-        <div className="grid gap-1 mr-4">
+        <div className="grid gap-1 md:mr-8">
           <Label className="sr-only" htmlFor="email">
             Email
           </Label>

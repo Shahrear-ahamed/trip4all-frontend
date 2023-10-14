@@ -19,12 +19,10 @@ export default function Navbar() {
           alt=""
         />
       </Link>
-      <div className="flex">
-        <div className="hidden md:flex md:ml-auto flex-wrap items-center justify-center text-sm mr-10">
-          <NavSolidItems />
-        </div>
+      <div className="flex h-full items-center">
+        <NavSolidItems />
 
-        <Link href="/sign-in" className="hidden md:inline-flex">
+        <Link href="/sign-in" className="hidden md:inline-flex ml-10">
           <Button>Sign in</Button>
         </Link>
 
