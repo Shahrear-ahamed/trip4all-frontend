@@ -9,37 +9,42 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Navbar() {
   return (
-    <nav className="">
-      <div className="container mx-auto flex justify-between items-center h-20">
-        <Link href="/">
-          <Image
-            width={150}
-            height={50}
-            className="w-auto h-7"
-            src={logo}
-            alt=""
-          />
-        </Link>
-        <div className="flex h-full items-center">
-          <NavSolidItems />
-
-          <Link href="/sign-in" className="hidden md:inline-flex ml-10">
-            <Button>Sign in</Button>
+    <nav className="h-20">
+      <div className="fixed w-full z-50 bg-white bg-opacity-50 backdrop-blur-lg">
+        <div className="container mx-auto flex justify-between items-center h-20">
+          <Link href="/">
+            <Image
+              width={150}
+              height={50}
+              className="w-auto h-7"
+              src={logo}
+              alt=""
+            />
           </Link>
+          <div className="flex h-full items-center">
+            <NavSolidItems />
 
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size={"icon"} className="rounded-none">
-                  <HiMenuAlt3 className="text-2xl" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="md:hidden">
-                <div className="text-sm flex flex-col space-y-5 mt-10 md:hidden">
-                  <NavMobileItems />
-                </div>
-              </SheetContent>
-            </Sheet>
+            <Link href="/sign-in" className="hidden md:inline-flex ml-10">
+              <Button>Sign in</Button>
+            </Link>
+
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size={"icon"}
+                    className="rounded-none">
+                    <HiMenuAlt3 className="text-2xl" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className="md:hidden">
+                  <div className="text-sm flex flex-col space-y-5 mt-10 md:hidden">
+                    <NavMobileItems />
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </div>

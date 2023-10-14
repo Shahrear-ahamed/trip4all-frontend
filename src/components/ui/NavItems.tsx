@@ -72,7 +72,7 @@ const NavLink = ({
 }) => (
   <Link
     href={href}
-    className={`hover:text-primary hover: duration-500 px-5 h-full flex items-center relative w-fit after:block after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ${
+    className={`hover:text-primary hover:duration-500 px-5 h-full flex items-center relative w-fit after:block after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left ${
       active ? "text-primary after:scale-x-100" : ""
     }`}>
     {children}
