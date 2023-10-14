@@ -7,9 +7,9 @@ import NewsLetter from "./newsLetter";
 
 export default function FooterTop() {
   const footerQuickLinks = [
-    { link: "/", name: "Home" },
     { link: "/blog", name: "Blog" },
     { link: "/service", name: "Service" },
+    { link: "/contact", name: "Contact" },
   ];
   return (
     <div className="container pt-12 mx-auto">
