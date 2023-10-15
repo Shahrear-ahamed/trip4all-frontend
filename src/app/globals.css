@@ -89,3 +89,8 @@
 .destinationSlice {
   backface-visibility: unset !important;
 }
+
+.mySwiper [class^="swiper-button-"]::after {
+  font-size: 30px;
+  color: white;
+}
