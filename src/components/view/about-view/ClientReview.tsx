@@ -1,7 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function ClientReview() {

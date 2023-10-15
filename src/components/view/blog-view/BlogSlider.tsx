@@ -36,7 +36,7 @@ export default function BlogSlider() {
           </div>
           <img
             src="https://swiperjs.com/demos/images/nature-1.jpg"
-            className="object-cover rounded-xl"
+            className="object-cover rounded-xl max-h-[550px] min-h-[256px] h-full w-full"
           />
         </SwiperSlide>
       </Swiper>

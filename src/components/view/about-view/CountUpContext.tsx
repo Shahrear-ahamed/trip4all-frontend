@@ -28,7 +28,7 @@ export default function CountUpContext() {
     },
   ];
   return (
-    <section className="bg-gray-600 bg-opacity-40 py-16 md:py-20 mb-10">
+    <section className="bg-gray-600 bg-opacity-40 py-16 md:py-20">
       <div className="container mx-auto grid gap-5 grid-cols-2 md:grid-cols-4">
         <VisibilitySensor partialVisibility offset={{ bottom: 200 }}>
           {({ isVisible }: { isVisible: boolean }) =>

@@ -9,7 +9,7 @@ export default function BlogPage() {
       <BlogSlider />
       <section className="my-10 grid gap-6 lg:gap-12 grid-cols-1 md:grid-cols-5 lg:grid-cols-3">
         <BlogList />
-        <BlogSidebar />
+        <BlogSidebar title="Latest Posts" />
       </section>
     </>
   );

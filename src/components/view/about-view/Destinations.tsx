@@ -27,11 +27,9 @@ export default function Destinations() {
   ];
   return (
     <Swiper
-      slidesPerView={4}
-      spaceBetween={30}
       loop={true}
       autoplay={{
-        delay: 2500,
+        delay: 1500,
         disableOnInteraction: false,
       }}
       pagination={{
@@ -50,19 +48,15 @@ export default function Destinations() {
           slidesPerView: 3,
           spaceBetween: 30,
         },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        },
       }}
       modules={[Pagination, Autoplay]}
-      className="mySwiper relative !py-10">
+      className="relative !py-10 !w-[880px]">
       {toursLists.map((tour, index) => (
-        <SwiperSlide key={index} className="shadow-none destinationSlice">
+        <SwiperSlide key={index} className="destinationSlice !bg-transparent">
           <div className="flex flex-col items-center">
             <div className="mb-2">
               <Image
-                src={france}
+                src={tour.img}
                 alt="tour"
                 layout="fill"
                 className="!w-64 !h-64 rounded-lg cursor-pointer !static"
