@@ -6,7 +6,6 @@ import { Inter } from "next/font/google";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "aos/dist/aos.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
