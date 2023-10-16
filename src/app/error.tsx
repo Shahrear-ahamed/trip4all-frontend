@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
 export default function Error({
@@ -15,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <section className="py-10 bg-white">
+    <section className="py-10 bg-white flex items-center h-screen">
       <div className="container">
         <div className="row">
           <div className="col-sm-12 ">
@@ -29,11 +30,12 @@ export default function Error({
 
                 <p>the page you are looking for not avaible!</p>
 
-                <button
+                <Button
                   onClick={() => reset()}
-                  className="text-white px-5 py-3 my-5 inline-block">
+                  variant={"secondary"}
+                  className="px-5 my-5 inline-block">
                   Something went wrong!
-                </button>
+                </Button>
               </div>
             </div>
           </div>
