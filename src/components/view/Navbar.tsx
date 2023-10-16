@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Navbar() {
   return (
-    <nav className="h-20">
+    <nav className="h-20 bg-white">
       <div className="fixed w-full z-[100] bg-white bg-opacity-50 backdrop-blur-lg">
         <div className="container mx-auto flex justify-between items-center h-20">
           <Link href="/">

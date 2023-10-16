@@ -34,7 +34,7 @@ export default function TeamMember() {
         {members.map((member, index) => (
           <div
             key={index}
-            className="relative max-w-[220px] w-full hover:shadow-md px-5 py-8 rounded-md duration-300 bg-white mt-14">
+            className="relative min-w-[220px] w-full lg:w-[60%] xl:w-[80%] hover:shadow-md px-5 py-8 rounded-md duration-300 bg-white mt-14">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
               <CustomAvatar
                 className="h-20 w-20 my-5 rounded-full border-2 border-primary"

@@ -1,15 +1,29 @@
 import Link from "next/link";
 import React from "react";
 
-export default function BlogSidebarLatestSingle() {
+export default function BlogSidebarLatestSingle({
+  variant = "vertical",
+}: {
+  variant: "horizontal" | "vertical";
+}) {
   return (
-    <div className="flex items-center">
+    <div
+      className={`flex items-center 
+        ${variant === "vertical" ? "" : "flex-col "}`}>
       <img
         src="https://themes.ad-theme.com/html/tada/img/latest-posts-2.jpg"
         alt="post 1"
-        className="rounded-sm w-24 h-20 sm:w-48 sm:h-44 md:w-24 md:h-20 lg:w-28 lg:h-24"
+        className={`rounded-sm ${
+          variant === "vertical"
+            ? "w-24 h-20 sm:w-48 sm:h-44 md:w-24 md:h-20 lg:w-28 lg:h-24"
+            : "w-[90%] max-w-[256px]"
+        }`}
       />
-      <div className="ml-4 lg:ml-6">
+      <div
+        className={`
+        ${
+          variant === "vertical" ? "ml-4 lg:ml-6" : "flex-col text-center mt-5"
+        }`}>
         <h5 className="mb-3 text-sm">
           <Link href="/blog/single-blog" className="tracking-widest">
             MAECENAS CONSECTETUR

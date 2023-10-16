@@ -19,12 +19,12 @@ export default function OurServiceHome() {
   ];
   return (
     <section className="mb-10 relative">
-      <div className="container mx-auto flex flex-col items-center min-h-[400px] justify-end pt-10 lg:pt-0">
-        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:absolute lg:-top-12 z-50">
+      <div className="container mx-auto flex flex-col items-center min-h-[400px] justify-end pt-10 lg:pt-0 relative">
+        <div className="grid gap-5 md:gap-7 ld:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:absolute lg:-top-12 z-50 w-full justify-items-center">
           {tourList.map((tour, index) => (
             <div
               key={index}
-              className="bg-gray-600 bg-opacity-50 max-w-[400px] w-full min-w-[256px] h-[350px] cursor-pointer group rounded overflow-hidden relative">
+              className="bg-gray-600 bg-opacity-50 max-w-[370px] w-full lg:w-[90%] xl:w-full min-w-[256px] h-[400px] cursor-pointer group rounded overflow-hidden relative hover:shadow-lg duration-500">
               <h3 className="text-center w-full text-2xl text-white absolute bottom-[15%] z-20">
                 {tour.title}
               </h3>
