@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { SheetClose } from "./sheet";
 import { usePathname } from "next/navigation";
-import { Button } from "./button";
-import { getUserInfo } from "@/service/auth.service";
 import { LoginDropDown } from "./LoginDropDown";
+import LoginMobile from "./LoginMobile";
 
 const navLinks = [
   {
@@ -30,25 +29,26 @@ const navLinks = [
   },
 ];
 
-// const userLoggedIn = getUserInfo();
-
 export const NavMobileItems = () => {
   const pathname = usePathname();
 
   return (
-    <ul className="flex flex-col space-y-7 font-semibold md:hidden justify-center text-sm ml-5">
-      {navLinks.map((item, index) => (
-        <li key={index}>
-          <SheetClose asChild>
-            <Link
-              href={item.link}
-              className={`${pathname === item.link ? "text-[#2563EB]" : ""}`}>
-              {item.name}
-            </Link>
-          </SheetClose>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className="flex flex-col space-y-7 font-semibold md:hidden justify-center text-sm">
+        {navLinks.map((item, index) => (
+          <li key={index}>
+            <SheetClose asChild>
+              <Link
+                href={item.link}
+                className={`${pathname === item.link ? "text-[#2563EB]" : ""}`}>
+                {item.name}
+              </Link>
+            </SheetClose>
+          </li>
+        ))}
+      </ul>
+      <LoginMobile />
+    </>
   );
 };
 

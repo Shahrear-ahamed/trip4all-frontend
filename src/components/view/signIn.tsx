@@ -48,8 +48,6 @@ export function UserAuthSignInForm({
         storeUserInfo({ accessToken: res?.accessToken });
         router.push("/");
       }
-
-      console.log("This is res", res);
     } catch (error: any) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_RIGHT,
