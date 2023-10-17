@@ -44,7 +44,7 @@ export default function RootLayout({
           isSideMenuOpen={isSideMenuOpen}
           toggleSideMenu={toggleSideMenu}
         />
-        <div className="m-5 overflow-y-auto w-[90%] mx-auto max-h-[calc(100%-80px)]">
+        <div className="m-5 ml-5 md:ml-0 overflow-y-auto w-[90%] mx-auto max-h-[calc(100%-80px)]">
           {children}
         </div>
       </section>

@@ -127,21 +127,21 @@ export const sidebarItems = (role: string) => {
       children: [
         {
           label: (
-            <Link href={`/${role}/content/add-post`} className="w-full my-5">
+            <Link href={`/${role}/content/add-blog`} className="w-full my-5">
               Add Blog
             </Link>
           ),
           icon: MdOutlinePostAdd,
-          key: `/${role}/content/add-post`,
+          key: `/${role}/content/add-blog`,
         },
         {
           label: (
-            <Link href={`/${role}/content/all-posts`} className="w-full my-5">
-              View All Posts
+            <Link href={`/${role}/content/all-blogs`} className="w-full my-5">
+              View All Blogs
             </Link>
           ),
           icon: BsFillPostcardFill,
-          key: `/${role}/content/all-posts`,
+          key: `/${role}/content/all-blogs`,
         },
         {
           label: (
@@ -160,6 +160,24 @@ export const sidebarItems = (role: string) => {
           ),
           icon: FaQ,
           key: `/${role}/content/all-faqs`,
+        },
+        {
+          label: (
+            <Link href={`/${role}/content/add-tag`} className="w-full my-5">
+              Add Tag
+            </Link>
+          ),
+          icon: BsSignpost2,
+          key: `/${role}/content/add-tag`,
+        },
+        {
+          label: (
+            <Link href={`/${role}/content/all-tags`} className="w-full my-5">
+              View All Tags
+            </Link>
+          ),
+          icon: FaQ,
+          key: `/${role}/content/all-tags`,
         },
       ],
     },
