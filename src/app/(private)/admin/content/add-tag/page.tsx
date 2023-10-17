@@ -16,10 +16,10 @@ import { useCreateTagMutation } from "@/redux/api/tag/tagApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 export default function AddTagPage() {
-  const router = useRouter();
   const [createTag, { isLoading }] = useCreateTagMutation();
 
   // 1. Define react and zod form.
@@ -33,11 +33,15 @@ export default function AddTagPage() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof tagFormSchema>) {
     try {
-      console.log("This is values", values);
       // 4. send request to server
       const res = await createTag(values).unwrap();
+      form.reset();
 
-      console.log("This is res", res);
+      if (res.id) {
+        toast.success("Tag created successfully.", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
     } catch (error: any) {
       console.log("This is err", error);
     }

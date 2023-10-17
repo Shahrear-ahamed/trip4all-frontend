@@ -26,3 +26,19 @@ export type UserLoggedInType = {
   email: string;
   role: string;
 };
+
+export type ITag = {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type IFaq = {
+  id: string;
+  title: string;
+  body: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};

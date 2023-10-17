@@ -36,7 +36,7 @@ export const tagApi = baseApi.injectEndpoints({
     }),
     getAllTags: build.query({
       query: () => ({
-        url: `${apiUrl.tag_url}/`,
+        url: `${apiUrl.tag_url}`,
         method: "GET",
       }),
       providesTags: [tagTypes.tag],
