@@ -1,12 +1,14 @@
-import MyProvider from "@/lib/provider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import MyProvider from "@/lib/Provider";
 
 // import Swiper and modules styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +26,10 @@ export default function RootLayout({
     <MyProvider>
       <html lang="en">
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <body className={`${inter.className} bg-gray-100`}>{children}</body>
+        <body className={`${inter.className} bg-gray-100`}>
+          {children}
+          <ToastContainer />
+        </body>
       </html>
     </MyProvider>
   );

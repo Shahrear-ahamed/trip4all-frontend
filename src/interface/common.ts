@@ -20,3 +20,9 @@ export type IGenericErrorMessage = {
   path: string | number;
   message: string;
 };
+
+export type UserLoggedInType = {
+  id: string;
+  email: string;
+  role: string;
+};

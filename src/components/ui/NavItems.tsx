@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { SheetClose } from "./sheet";
 import { usePathname } from "next/navigation";
+import { Button } from "./button";
+import { getUserInfo } from "@/service/auth.service";
+import { LoginDropDown } from "./LoginDropDown";
 
 const navLinks = [
   {
@@ -27,8 +30,11 @@ const navLinks = [
   },
 ];
 
+// const userLoggedIn = getUserInfo();
+
 export const NavMobileItems = () => {
   const pathname = usePathname();
+
   return (
     <ul className="flex flex-col space-y-7 font-semibold md:hidden justify-center text-sm ml-5">
       {navLinks.map((item, index) => (
@@ -57,6 +63,8 @@ export const NavSolidItems = () => {
           </NavLink>
         </li>
       ))}
+
+      <LoginDropDown />
     </ul>
   );
 };

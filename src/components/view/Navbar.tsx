@@ -8,6 +8,8 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Navbar() {
+
+
   return (
     <nav className="h-20 bg-white">
       <div className="fixed w-full z-[100] bg-white bg-opacity-50 backdrop-blur-lg">
@@ -23,10 +25,6 @@ export default function Navbar() {
           </Link>
           <div className="flex h-full items-center">
             <NavSolidItems />
-
-            <Link href="/sign-in" className="hidden md:inline-flex ml-10">
-              <Button>Sign in</Button>
-            </Link>
 
             <div className="md:hidden">
               <Sheet>

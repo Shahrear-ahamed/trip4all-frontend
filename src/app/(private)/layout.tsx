@@ -1,29 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardNav from "@/components/ui/DashboardNav";
 import Aside from "@/components/ui/Aside";
+import { isLoggedIn } from "@/service/auth.service";
+import { useRouter } from "next/navigation";
+import LoadingUi from "@/components/ui/loadingUi";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const userLoggedIn = isLoggedIn();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false);
 
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
   };
+
+  useEffect(() => {
+    if (!userLoggedIn) {
+      router.push("/login");
+    }
+    setIsLoading(true);
+  }, [router, isLoading, userLoggedIn]);
+
+  if (!isLoading) {
+    return (
+      <div className="w-screen h-screen flex items-center justify-center">
+        <LoadingUi />
+      </div>
+    );
+  }
+
   return (
     <html lang="en">
-      <body className="flex">
+      <body className="flex flex-col">
         <DashboardNav toggleSideMenu={toggleSideMenu} />
         <main className="relative flex-1 overflow-y-auto flex gap-5">
           <Aside
             isSideMenuOpen={isSideMenuOpen}
             toggleSideMenu={toggleSideMenu}
           />
-          <div className="my-5 max-w-[1200px] overflow-y-auto w-[90%] mx-auto max-h-[calc(100%-80px)]">
+          <div className="m-5 overflow-y-auto w-[90%] mx-auto max-h-[calc(100%-80px)]">
             {children}
           </div>
         </main>

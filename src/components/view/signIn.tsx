@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { storeUserInfo } from "@/service/auth.service";
+import { toast } from "react-toastify";
 
 interface UserAuthSignUpFormProps
   extends React.HTMLAttributes<HTMLDivElement> {}
@@ -43,13 +44,17 @@ export function UserAuthSignInForm({
       // 4. send request to server
       const res = await signInUser(values).unwrap();
 
-      storeUserInfo({ accessToken: res?.accessToken });
-
       if (res?.accessToken) {
+        storeUserInfo({ accessToken: res?.accessToken });
         router.push("/");
       }
-    } catch (error) {
-      console.log(error);
+
+      console.log("This is res", res);
+    } catch (error: any) {
+      toast.error(error.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      console.log("This is err", error);
     }
   }
 

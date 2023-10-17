@@ -6,10 +6,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./button";
 import { BiLogOut } from "react-icons/bi";
 import { sidebarItems } from "@/constant/sideBarItems";
+import { removeUserInfo } from "@/service/auth.service";
+import { authKey } from "@/constant/storageKey";
 
 interface DashboardNavItemsProps {
   role: string;
@@ -23,6 +25,7 @@ export default function DashboardNavItems({
   toggleSideMenu,
 }: DashboardNavItemsProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const menuItems = sidebarItems(role);
 
   const handleToggleMenu = () => {
@@ -31,7 +34,10 @@ export default function DashboardNavItems({
     }
   };
 
-  console.log(pathname);
+  const logOut = () => {
+    removeUserInfo(authKey);
+    router.push("/sign-in");
+  };
 
   return (
     <>
@@ -81,7 +87,7 @@ export default function DashboardNavItems({
         ))}
       </div>
       <div>
-        <Button variant="destructive" className="w-full flex">
+        <Button variant="destructive" className="w-full flex" onClick={logOut}>
           <BiLogOut className="mr-3" /> Logout
         </Button>
       </div>
