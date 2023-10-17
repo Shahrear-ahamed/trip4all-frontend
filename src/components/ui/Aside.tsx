@@ -6,13 +6,11 @@ interface AsideProps {
 }
 
 const Aside = ({ isSideMenuOpen, toggleSideMenu }: AsideProps) => {
-  const role = "super_admin";
 
   return (
     <>
       <aside className="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800  max-h-full min-h-[calc(100vh-80px)] shadow-lg md:flex flex-col justify-between pt-5 pb-10">
         <DashboardNavItems
-          role={role}
           toggleSideMenu={toggleSideMenu}
           canToggle={false}
         />
@@ -33,7 +31,6 @@ const Aside = ({ isSideMenuOpen, toggleSideMenu }: AsideProps) => {
           isSideMenuOpen ? "left-0" : "-left-[300px]"
         }`}>
         <DashboardNavItems
-          role={role}
           toggleSideMenu={toggleSideMenu}
           canToggle={true}
         />

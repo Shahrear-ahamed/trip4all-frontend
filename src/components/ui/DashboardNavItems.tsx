@@ -10,23 +10,29 @@ import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./button";
 import { BiLogOut } from "react-icons/bi";
 import { sidebarItems } from "@/constant/sideBarItems";
-import { removeUserInfo } from "@/service/auth.service";
+import { getUserInfo, removeUserInfo } from "@/service/auth.service";
 import { authKey } from "@/constant/storageKey";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addUser, removeUser } from "@/redux/slice/auth/auth";
+import { useEffect } from "react";
 
 interface DashboardNavItemsProps {
-  role: string;
   canToggle: boolean;
   toggleSideMenu: () => void;
 }
 
 export default function DashboardNavItems({
-  role,
   canToggle,
   toggleSideMenu,
 }: DashboardNavItemsProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const menuItems = sidebarItems(role);
+  let userLoggedIn = getUserInfo() as any;
+
+  const userSlice = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  const menuItems = sidebarItems(userSlice?.role);
 
   const handleToggleMenu = () => {
     if (canToggle) {
@@ -36,17 +42,22 @@ export default function DashboardNavItems({
 
   const logOut = () => {
     removeUserInfo(authKey);
+    dispatch(removeUser());
     router.push("/sign-in");
   };
+
+  useEffect(() => {
+    dispatch(addUser(userLoggedIn));
+  }, [dispatch, userLoggedIn]);
 
   return (
     <>
       <div className="text-gray-500 dark:text-gray-400">
-        {menuItems.map((item) => (
+        {menuItems.map((item, idx) => (
           <Accordion
             type="single"
             collapsible
-            key={item.key}
+            key={item.key ? item.key : idx}
             className="border-b cursor-pointer">
             <AccordionItem value="item-1" className="border-b-0 w-40 mx-auto">
               {item.children ? (

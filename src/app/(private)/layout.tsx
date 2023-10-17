@@ -37,19 +37,17 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en">
-      <body className="flex flex-col">
-        <DashboardNav toggleSideMenu={toggleSideMenu} />
-        <main className="relative flex-1 overflow-y-auto flex gap-5">
-          <Aside
-            isSideMenuOpen={isSideMenuOpen}
-            toggleSideMenu={toggleSideMenu}
-          />
-          <div className="m-5 overflow-y-auto w-[90%] mx-auto max-h-[calc(100%-80px)]">
-            {children}
-          </div>
-        </main>
-      </body>
-    </html>
+    <main className="flex flex-col">
+      <DashboardNav toggleSideMenu={toggleSideMenu} />
+      <section className="relative flex-1 overflow-y-auto flex gap-5">
+        <Aside
+          isSideMenuOpen={isSideMenuOpen}
+          toggleSideMenu={toggleSideMenu}
+        />
+        <div className="m-5 overflow-y-auto w-[90%] mx-auto max-h-[calc(100%-80px)]">
+          {children}
+        </div>
+      </section>
+    </main>
   );
 }
