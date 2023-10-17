@@ -2,11 +2,25 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Icons } from "../ui/icons";
 import SocialLogin from "./socialLogin";
+import { useRouter } from "next/navigation";
+import { useUserSignInMutation } from "@/redux/api/auth/authApi";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInFormSchema } from "@/constant/formSchema";
+import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { storeUserInfo } from "@/service/auth.service";
 
 interface UserAuthSignUpFormProps
   extends React.HTMLAttributes<HTMLDivElement> {}
@@ -15,68 +29,101 @@ export function UserAuthSignInForm({
   className,
   ...props
 }: UserAuthSignUpFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const router = useRouter();
+  const [signInUser, { isLoading }] = useUserSignInMutation();
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-    setIsLoading(true);
+  // 1. Define react and zod form.
+  const form = useForm<z.infer<typeof signInFormSchema>>({
+    resolver: zodResolver(signInFormSchema),
+  });
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+  // 2. Define a submit handler.
+  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
+    try {
+      // 4. send request to server
+      const res = await signInUser(values).unwrap();
+
+      storeUserInfo({ accessToken: res?.accessToken });
+
+      if (res?.accessToken) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={onSubmit}>
-        <div className="grid gap-5">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
-            />
-          </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <div className="grid gap-3">
+            <div className="grid gap-1">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="sr-only" htmlFor="email">
+                      Email
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        id="email"
+                        placeholder="name@example.com"
+                        type="email"
+                        autoCapitalize="none"
+                        autoComplete="email"
+                        autoCorrect="off"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="grid gap-1">
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="sr-only" htmlFor="password">
+                      Password
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        id="password"
+                        placeholder="your password"
+                        type="password"
+                        autoCapitalize="none"
+                        autoComplete="password"
+                        autoCorrect="off"
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="password">
-              Password
-            </Label>
-            <Input
-              id="password"
-              placeholder="your password"
-              type="password"
-              autoCapitalize="none"
-              autoComplete="password"
-              autoCorrect="off"
+            {/* // button  */}
+            <Button
               disabled={isLoading}
-            />
+              className="inline-flex w-full items-center">
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Sign In
+            </Button>
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            Login
-          </Button>
-        </div>
-      </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-      </div>
+        </form>
+      </Form>
+
       <SocialLogin isLoading={isLoading} />
     </div>
   );

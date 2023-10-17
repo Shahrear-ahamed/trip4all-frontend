@@ -28,7 +28,7 @@ export default function RootLayout({
         {pathname === "/sign-up" ? "Sign In" : "Sign Up"}
       </Link>
       <div className="relative hidden flex-col bg-muted text-white dark:border-r lg:flex">
-        <div className="absolute h-[100vh] w-full bg-black opacity-30"></div>
+        <div className="absolute h-full w-full bg-black opacity-30"></div>
         <div className="absolute left-4 top-4 md:right-8 md:top-8 z-20 flex items-center text-lg font-medium">
           <Link href="/">
             <Image
