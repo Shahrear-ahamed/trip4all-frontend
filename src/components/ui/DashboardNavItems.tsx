@@ -13,15 +13,26 @@ import { sidebarItems } from "@/constant/sideBarItems";
 
 interface DashboardNavItemsProps {
   role: string;
+  canToggle: boolean;
   toggleSideMenu: () => void;
 }
 
 export default function DashboardNavItems({
   role,
+  canToggle,
   toggleSideMenu,
 }: DashboardNavItemsProps) {
   const pathname = usePathname();
   const menuItems = sidebarItems(role);
+
+  const handleToggleMenu = () => {
+    if (canToggle) {
+      toggleSideMenu();
+    }
+  };
+
+  console.log(pathname);
+
   return (
     <>
       <div className="text-gray-500 dark:text-gray-400">
@@ -30,14 +41,12 @@ export default function DashboardNavItems({
             type="single"
             collapsible
             key={item.key}
-            className={`border-b cursor-pointer ${
-              item.key?.includes(pathname) && " text-primary"
-            }`}>
+            className="border-b cursor-pointer">
             <AccordionItem value="item-1" className="border-b-0 w-40 mx-auto">
               {item.children ? (
                 <AccordionTrigger className="hover:no-underline">
                   <div
-                    onClick={toggleSideMenu}
+                    onClick={handleToggleMenu}
                     className="w-40 mx-auto flex items-center">
                     <item.icon className="w-6 h-6" />
                     <span className="ml-5">{item.label}</span>
@@ -45,8 +54,10 @@ export default function DashboardNavItems({
                 </AccordionTrigger>
               ) : (
                 <div
-                  onClick={toggleSideMenu}
-                  className="w-40 py-4 mx-auto flex items-center">
+                  onClick={handleToggleMenu}
+                  className={`w-40 py-4 mx-auto flex items-center ${
+                    item.key === pathname && "text-primary"
+                  }`}>
                   <item.icon className="w-6 h-6" />
                   <span className="ml-5 text-sm">{item.label}</span>
                 </div>
@@ -56,7 +67,9 @@ export default function DashboardNavItems({
                   {item.children.map((child) => (
                     <div
                       key={child.key}
-                      className="w-full my-5 flex items-center">
+                      className={`w-full my-5 flex items-center ${
+                        child.key === pathname && "text-primary"
+                      }`}>
                       <child.icon className="w-6 h-6" />
                       <span className="ml-3">{child.label}</span>
                     </div>

@@ -40,21 +40,21 @@ export const sidebarItems = (role: string) => {
       children: [
         {
           label: (
-            <Link href={`/${role}/profile`} className="w-full my-5">
+            <Link href={`/profile`} className="w-full my-5">
               My Profile
             </Link>
           ),
           icon: FaUserNurse,
-          key: `/${role}/profile`,
+          key: `/profile`,
         },
         {
           label: (
-            <Link href={`/${role}/change-password`} className="w-full my-5">
+            <Link href={`/profile/change-password`} className="w-full my-5">
               Change Password
             </Link>
           ),
           icon: BiKey,
-          key: `/${role}/change-password`,
+          key: `/profile/change-password`,
         },
       ],
     },
