@@ -1,4 +1,4 @@
-const saveImage = async (image: File) => {
+const imageUpload = async (image: File) => {
   const data = new FormData();
   data.append("file", image);
   data.append("upload_preset", "trip4all");
@@ -14,8 +14,12 @@ const saveImage = async (image: File) => {
     );
 
     const cloudData = await res.json();
+    console.log(cloudData);
     return cloudData;
   } catch (error) {
     return error;
   }
 };
+
+
+export default imageUpload;

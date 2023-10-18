@@ -4,6 +4,7 @@ const apiUrl = {
   faq_url: "/faqs",
   feedback_url: "/feedbacks",
   tag_url: "/tags",
+  user_url: "/users",
 };
 
 export default apiUrl;

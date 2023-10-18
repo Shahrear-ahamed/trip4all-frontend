@@ -42,3 +42,14 @@ export type IFaq = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type IBlog = {
+  id: string;
+  title: string;
+  slug: string;
+  tagId: string;
+  thumbnail: string;
+  body: string;
+  createdAt: string;
+  updatedAt: string;
+};

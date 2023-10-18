@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import BlogSidebarLatestSingle from "./BlogSidebarLatestSingle";
+import { useGetAllBlogsQuery } from "@/redux/api/blog/blogApi";
 
 export default function BlogSidebar({
   title,
@@ -10,6 +13,7 @@ export default function BlogSidebar({
   variant: "horizontal" | "vertical";
   totalBlog: number;
 }) {
+  const { data } = useGetAllBlogsQuery(undefined);
   let className: string;
 
   if (variant === "horizontal") {
@@ -18,6 +22,7 @@ export default function BlogSidebar({
   } else {
     className = "md:px-4 lg:px-6 space-y-8";
   }
+  console.log(data);
 
   return (
     <div className="md:col-span-2 lg:col-span-1">

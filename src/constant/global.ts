@@ -12,3 +12,5 @@ export const genderOptions = [
     value: "others",
   },
 ];
+
+export const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];

@@ -22,6 +22,23 @@ export const signInFormSchema = z.object({
   }),
 });
 
+export const profileFormSchema = z.object({
+  fullName: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Name must not be longer than 30 characters.",
+    })
+    .optional(),
+  bio: z.string().max(160).min(4).optional(),
+  avatar: z.any().optional(),
+  gender: z.string().optional(),
+  contactNo: z.string().optional(),
+  bloodGroup: z.string().optional(),
+});
+
 export const changePasswordFormSchema = z.object({
   oldPassword: z.string().min(6, {
     message: "password must be at least 6 characters.",
@@ -50,15 +67,24 @@ export const createBlogFormSchema = z.object({
   slug: z.string().min(3, {
     message: "slug must be at least 3 characters.",
   }),
-  blog: z.string().min(3, {
-    message: "content must be at least 3 characters.",
-  }),
-  tagId: z.array(z.string()).min(1, {
-    message: "select at least one tag.",
-  }),
-  thumbnail: z.string().url({
-    message: "enter a valid url.",
-  }),
+  body: z
+    .string()
+    .min(3, {
+      message: "content must be at least 3 characters.",
+    })
+    .optional(),
+  tagId: z
+    .string()
+    .min(1, {
+      message: "select at least one tag.",
+    })
+    .optional(),
+  thumbnail: z
+    .string()
+    .url({
+      message: "enter a valid url.",
+    })
+    .optional(),
 });
 
 export const updateBlogFormSchema = z.object({
@@ -74,14 +100,14 @@ export const updateBlogFormSchema = z.object({
       message: "slug must be at least 3 characters.",
     })
     .optional(),
-  blog: z
+  body: z
     .string()
     .min(3, {
       message: "content must be at least 3 characters.",
     })
     .optional(),
   tagId: z
-    .array(z.string())
+    .string()
     .min(1, {
       message: "select at least one tag.",
     })

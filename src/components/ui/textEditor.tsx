@@ -12,7 +12,7 @@ export default function TextEditor({ blog, setBlog }: IBlogProps) {
       value={blog}
       onChange={setBlog}
       id="blog"
-      className="h-[500px]"
+      className="h-[300px]"
     />
   );
 }
