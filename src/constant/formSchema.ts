@@ -22,6 +22,21 @@ export const signInFormSchema = z.object({
   }),
 });
 
+export const changePasswordFormSchema = z.object({
+  oldPassword: z.string().min(6, {
+    message: "password must be at least 6 characters.",
+  }),
+  newPassword: z.string().min(6, {
+    message: "password must be at least 6 characters.",
+  }),
+  cNewPassword: z
+    .string()
+    .min(6, {
+      message: "confirm password must be at least 6 characters.",
+    })
+    .optional(),
+});
+
 export const tagFormSchema = z.object({
   name: z.string().min(3, {
     message: "tag name must be at least 3 characters.",

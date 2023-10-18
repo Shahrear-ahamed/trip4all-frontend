@@ -36,6 +36,10 @@ export function UserAuthSignInForm({
   // 1. Define react and zod form.
   const form = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   // 2. Define a submit handler.
@@ -79,6 +83,7 @@ export function UserAuthSignInForm({
                         autoComplete="email"
                         autoCorrect="off"
                         disabled={isLoading}
+                        defaultValue={form.watch("email")}
                         {...field}
                       />
                     </FormControl>
@@ -105,6 +110,7 @@ export function UserAuthSignInForm({
                         autoComplete="password"
                         autoCorrect="off"
                         disabled={isLoading}
+                        defaultValue={form.watch("password")}
                         {...field}
                       />
                     </FormControl>

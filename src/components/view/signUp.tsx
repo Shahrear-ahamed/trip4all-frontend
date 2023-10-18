@@ -38,6 +38,12 @@ export function UserAuthSignUpForm({
   // 1. Define react and zod form.
   const form = useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      role: "",
+      cPassword: "",
+    },
   });
 
   // 2. Define a submit handler.
@@ -90,6 +96,7 @@ export function UserAuthSignUpForm({
                         autoComplete="email"
                         autoCorrect="off"
                         disabled={isLoading}
+                        defaultValue={form.watch("email")}
                         {...field}
                       />
                     </FormControl>
@@ -116,6 +123,7 @@ export function UserAuthSignUpForm({
                         autoComplete="password"
                         autoCorrect="off"
                         disabled={isLoading}
+                        defaultValue={form.watch("password")}
                         {...field}
                       />
                     </FormControl>
@@ -142,6 +150,7 @@ export function UserAuthSignUpForm({
                         autoComplete="password"
                         autoCorrect="off"
                         disabled={isLoading}
+                        defaultValue={form.watch("cPassword")}
                         {...field}
                       />
                     </FormControl>
@@ -163,7 +172,6 @@ export function UserAuthSignUpForm({
           </div>
         </form>
       </Form>
-
 
       <SocialLogin isLoading={isLoading} />
     </div>
