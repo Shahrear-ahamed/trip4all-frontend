@@ -11,20 +11,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { IFaq } from "@/interface";
-import {
-  useDeleteSingleFaqMutation,
-  useGetAllFaqsQuery,
-} from "@/redux/api/faq/faqApi";
+import { ICategory } from "@/interface";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+import {
+  useDeleteSingleCategoryMutation,
+  useGetAllCategoriesQuery,
+} from "@/redux/api/category/categoryApi";
 const { DateTime } = require("luxon");
 
 export default function AllRags() {
-  const [deleteFaq, { isSuccess: faqDeleteSuccess }] =
-    useDeleteSingleFaqMutation();
-  const { data, isLoading, isSuccess, isError } = useGetAllFaqsQuery(
+  const [deleteCategory, { isSuccess: categoryDeleteSuccess }] =
+    useDeleteSingleCategoryMutation();
+  const { data, isLoading, isSuccess, isError } = useGetAllCategoriesQuery(
     undefined,
     {
       refetchOnMountOrArgChange: true,
@@ -33,8 +33,21 @@ export default function AllRags() {
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await deleteFaq(id).unwrap();
-      console.log(res);
+      const res = await deleteCategory(id).unwrap();
+
+      if (!res?.id) {
+        return toast.error("Something went wrong", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      }
+
+      toast.success("Category deleted successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -44,47 +57,35 @@ export default function AllRags() {
 
   if (isError) return <div>Something went wrong</div>;
 
-  if (faqDeleteSuccess) {
-    toast.success("Faq deleted successfully", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: true,
-    });
-  }
-
   return (
     <div className="my-5">
       <h1 className="text-3xl font-semibold">All Tags</h1>
       <Table className="mt-5 text-center">
-        <TableCaption>A list of recent faqs</TableCaption>
+        <TableCaption>A list of recent categories</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center text-xl">Title</TableHead>
             <TableHead className="text-center text-xl">Body</TableHead>
-            <TableHead className="text-center text-xl">Status</TableHead>
             <TableHead className="text-center text-xl">Created At</TableHead>
             <TableHead className="text-center text-xl">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {isSuccess &&
-            data?.map((faq: IFaq) => (
-              <TableRow key={faq.id}>
-                <TableCell>{faq.title}</TableCell>
-                <TableCell>{faq.body}</TableCell>
-                <TableCell>{faq.isActive.toString()}</TableCell>
+            data?.map((category: ICategory) => (
+              <TableRow key={category.id}>
+                <TableCell>{category.name}</TableCell>
                 <TableCell>
-                  {DateTime.fromISO(faq.createdAt, { zone: "utc" }).toFormat(
-                    "yyyy-MM-dd"
-                  )}
+                  {DateTime.fromISO(category.createdAt, {
+                    zone: "utc",
+                  }).toFormat("yyyy-MM-dd")}
                 </TableCell>
                 <TableCell className="w-full flex gap-4 justify-center">
-                  <Link href={`/admin/content/all-faqs/${faq.id}/edit`}>
+                  <Link href={`/admin/content/all-faqs/${category.id}/edit`}>
                     <Button variant="ghost">Edit</Button>
                   </Link>
                   <Button
                     variant="destructive"
-                    onClick={() => handleDelete(faq?.id)}>
+                    onClick={() => handleDelete(category?.id)}>
                     Delete
                   </Button>
                 </TableCell>

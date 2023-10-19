@@ -18,11 +18,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { USER_ROLE_LABEL } from "@/constant/role";
+import { USER_ROLE } from "@/constant/role";
 import { useUserSignUpMutation } from "@/redux/api/auth/authApi";
-import { SuccessAlert } from "../ui/myAlerts";
 import { useRouter } from "next/navigation";
 import { signUpFormSchema } from "@/constant/formSchema";
+import { toast } from "react-toastify";
 
 interface UserAuthSignUpFormProps
   extends React.HTMLAttributes<HTMLDivElement> {}
@@ -32,8 +32,7 @@ export function UserAuthSignUpForm({
   ...props
 }: UserAuthSignUpFormProps) {
   const router = useRouter();
-  const [signUpUser, { isLoading, isSuccess, isError }] =
-    useUserSignUpMutation();
+  const [signUpUser, { isLoading }] = useUserSignUpMutation();
 
   // 1. Define react and zod form.
   const form = useForm<z.infer<typeof signUpFormSchema>>({
@@ -56,21 +55,18 @@ export function UserAuthSignUpForm({
     }
 
     // 3. set user role
-    values = { ...values, role: USER_ROLE_LABEL.USER };
+    values = { ...values, role: USER_ROLE.USER };
 
-    try {
-      // 4. send request to server
-      await signUpUser(values).unwrap();
-    } catch (error) {
-      console.log(error);
+    // 4. send request to server
+    const res = await signUpUser(values).unwrap();
+
+    // 5. show success message
+    if (res.id) {
+      toast.success("Account created successfully.");
+      router.push("/sign-in");
+    } else {
+      toast.error("Something went wrong.");
     }
-  }
-
-  if (isSuccess && !isError) {
-    <div className="absolute top-1/4 left-10 w-[200px]">
-      <SuccessAlert message="Account created successfully. Please login" />;
-    </div>;
-    router.push("/sign-in");
   }
 
   return (

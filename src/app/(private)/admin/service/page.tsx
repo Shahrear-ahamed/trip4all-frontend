@@ -17,14 +17,17 @@ import {
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { DateTime } from "luxon";
-import { IBlog } from "@/interface";
+import { IBlog, IService } from "@/interface";
 import Image from "next/image";
+import {
+  useDeleteSingleServiceMutation,
+  useGetAllServicesQuery,
+} from "@/redux/api/service/serviceApi";
 
-export default function AllBlog() {
-  const [deleteBlog, { isSuccess: blogDeleteSuccess }] =
-    useDeleteSingleBlogMutation();
+export default function AllServices() {
+  const [deleteService] = useDeleteSingleServiceMutation();
 
-  const { data, isLoading, isSuccess, isError } = useGetAllBlogsQuery(
+  const { data, isLoading, isSuccess, isError } = useGetAllServicesQuery(
     undefined,
     {
       refetchOnMountOrArgChange: true,
@@ -33,8 +36,22 @@ export default function AllBlog() {
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await deleteBlog(id).unwrap();
+      const res = await deleteService(id).unwrap();
+
       console.log(res);
+
+      if (!res?.id) {
+        return toast.error("Something went wrong", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      }
+
+      toast.success("Services deleted successfully", {
+        position: "top-right",
+        hideProgressBar: true,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -44,55 +61,48 @@ export default function AllBlog() {
 
   if (isError) return <div>Something went wrong</div>;
 
-  if (blogDeleteSuccess) {
-    toast.success("Blog deleted successfully", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: true,
-    });
-  }
+  console.log(data);
+
   return (
     <div className="my-5">
       <h1 className="text-3xl font-semibold">All Tags</h1>
       <Table className="mt-5 text-center">
-        <TableCaption>A list of recent faqs</TableCaption>
+        <TableCaption>A list of recent services</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="text-center text-xl">Image</TableHead>
             <TableHead className="text-center text-xl">Title</TableHead>
-            <TableHead className="text-center text-xl">Created At</TableHead>
+            <TableHead className="text-center text-xl">Price</TableHead>
+            <TableHead className="text-center text-xl">Slot</TableHead>
             <TableHead className="text-center text-xl">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {isSuccess &&
-            data?.map((blog: IBlog) => (
-              <TableRow key={blog.id}>
+            data?.data?.map((service: IService) => (
+              <TableRow key={service.id}>
                 <TableCell className="flex justify-center">
                   <Image
-                    src={blog.thumbnail}
+                    src={service.thumbnail}
                     height={60}
                     width={100}
-                    alt={blog.title}
+                    alt={service.title}
                   />
                 </TableCell>
-                <TableCell>{blog.title}</TableCell>
-                <TableCell>
-                  {DateTime.fromISO(blog.createdAt, { zone: "utc" }).toFormat(
-                    "yyyy-MM-dd"
-                  )}
-                </TableCell>
+                <TableCell>{service.title}</TableCell>
+                <TableCell>{service.price}</TableCell>
+                <TableCell>{service.slots}</TableCell>
                 <TableCell>
                   <div>
-                    <Link href={`/admin/content/all-blogs/${blog.id}/edit`}>
+                    <Link href={`/admin/service/${service.id}/edit`}>
                       <Button variant="ghost">Edit</Button>
                     </Link>
-                    <Link href={`/blog/${blog.slug}/`}>
-                      <Button variant="ghost">View blog</Button>
+                    <Link href={`/admin/${service.id}/view`}>
+                      <Button variant="ghost">View Service</Button>
                     </Link>
                     <Button
                       variant="destructive"
-                      onClick={() => handleDelete(blog?.id)}>
+                      onClick={() => handleDelete(service?.id)}>
                       Delete
                     </Button>
                   </div>

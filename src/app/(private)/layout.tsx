@@ -23,7 +23,7 @@ export default function RootLayout({
 
   useEffect(() => {
     if (!userLoggedIn) {
-      router.push("/login");
+      router.push("/sign-in");
     }
     setIsLoading(true);
   }, [router, isLoading, userLoggedIn]);

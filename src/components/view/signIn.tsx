@@ -49,6 +49,10 @@ export function UserAuthSignInForm({
       const res = await signInUser(values).unwrap();
 
       if (res?.accessToken) {
+        toast.success("Login successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+          closeButton: false,
+        });
         storeUserInfo({ accessToken: res?.accessToken });
         router.push("/");
       }
@@ -56,7 +60,6 @@ export function UserAuthSignInForm({
       toast.error(error.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      console.log("This is err", error);
     }
   }
 

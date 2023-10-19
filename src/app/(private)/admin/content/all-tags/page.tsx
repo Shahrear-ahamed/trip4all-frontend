@@ -64,7 +64,7 @@ export default function AllTags() {
         </TableHeader>
         <TableBody>
           {isSuccess &&
-            data.map((tag: ITag) => (
+            data?.map((tag: ITag) => (
               <TableRow key={tag.id}>
                 <TableCell className="max-w-[250px]">{tag.id}</TableCell>
                 <TableCell>{tag.name}</TableCell>

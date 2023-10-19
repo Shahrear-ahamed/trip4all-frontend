@@ -50,7 +50,7 @@ export default function WhatWeProvide() {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-        {ourServiceData.map((item, index) => (
+        {ourServiceData?.map((item, index) => (
           <div
             className="flex flex-col md:flex-row md:items-center md:justify-between space-y-5 px-6 py-10 bg-white hover:shadow-lg duration-500 rounded-md"
             key={index}>

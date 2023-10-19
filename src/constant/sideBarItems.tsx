@@ -18,7 +18,7 @@ import {
 } from "react-icons/fa6";
 import { GrServices } from "react-icons/gr";
 import { BsFillPostcardFill, BsSignpost2 } from "react-icons/bs";
-import { BiKey } from "react-icons/bi";
+import { BiCategory, BiKey, BiSolidDuplicate } from "react-icons/bi";
 import { HiMiniViewfinderCircle } from "react-icons/hi2";
 import { IoAddCircle } from "react-icons/io5";
 import { RiUserStarFill } from "react-icons/ri";
@@ -92,6 +92,26 @@ export const sidebarItems = (role: string) => {
           ),
           icon: AiFillFileAdd,
           key: `/${role}/service/add-service`,
+        },
+        {
+          label: (
+            <Link href={`/${role}/category`} className="w-full my-5">
+              View Category
+            </Link>
+          ),
+          icon: BiCategory,
+          key: `/${role}/category`,
+        },
+        {
+          label: (
+            <Link
+              href={`/${role}/category/add-category`}
+              className="w-full my-5">
+              Add Category
+            </Link>
+          ),
+          icon: BiSolidDuplicate,
+          key: `/${role}/category/add-category`,
         },
       ],
     },
@@ -184,7 +204,30 @@ export const sidebarItems = (role: string) => {
   ];
 
   const superAdminSidebarItems = [
-    ...defaultSidebarItems,
+    {
+      label: "Profile",
+      icon: CgProfile,
+      children: [
+        {
+          label: (
+            <Link href={`/profile`} className="w-full my-5">
+              My Profile
+            </Link>
+          ),
+          icon: FaUserNurse,
+          key: `/profile`,
+        },
+        {
+          label: (
+            <Link href={`/profile/change-password`} className="w-full my-5">
+              Change Password
+            </Link>
+          ),
+          icon: BiKey,
+          key: `/profile/change-password`,
+        },
+      ],
+    },
     {
       label: "Manage Admins",
       icon: FaUserTie,

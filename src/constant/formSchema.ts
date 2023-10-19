@@ -60,6 +60,12 @@ export const tagFormSchema = z.object({
   }),
 });
 
+export const categoryFormSchema = z.object({
+  name: z.string().min(3, {
+    message: "tag name must be at least 3 characters.",
+  }),
+});
+
 export const createBlogFormSchema = z.object({
   title: z.string().min(3, {
     message: "title must be at least 3 characters.",
@@ -138,4 +144,26 @@ export const updateFaqFormSchema = z.object({
     message: "body must be at least 3 characters.",
   }),
   isActive: z.boolean().optional(),
+});
+
+export const createServiceFormSchema = z.object({
+  title: z.string().min(1).max(255),
+  description: z.string().min(1).max(1000),
+  price: z.number().positive(),
+  availableDate: z.string(),
+  slots: z.number().int().positive(),
+  thumbnail: z.string().url(),
+  categoryId: z.string(),
+  status: z.string(),
+});
+
+export const updateServiceFormSchema = z.object({
+  title: z.string().min(1).max(255).optional(),
+  description: z.string().min(1).max(1000).optional(),
+  price: z.number().positive().optional(),
+  availableDate: z.string().optional(),
+  slots: z.number().int().positive().optional(),
+  thumbnail: z.string().url().optional(),
+  categoryId: z.string().optional(),
+  status: z.string().optional(),
 });

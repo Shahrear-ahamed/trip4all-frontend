@@ -53,3 +53,46 @@ export type IBlog = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type ISlugBlog = IBlog & {
+  nextBlog?: string | null;
+  previousBlog?: string | null;
+};
+
+export type ICategory = {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type IService = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  availableDate: string;
+  slots: number;
+  thumbnail: string;
+  categoryId: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Service = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  availableDate: string;
+  slots: number;
+  thumbnail: string;
+  status: string;
+};
+
+export type Category = {
+  catId: string;
+  catName: string;
+  service: Service;
+};

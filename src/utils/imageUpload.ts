@@ -14,12 +14,10 @@ const imageUpload = async (image: File) => {
     );
 
     const cloudData = await res.json();
-    console.log(cloudData);
     return cloudData;
   } catch (error) {
     return error;
   }
 };
-
 
 export default imageUpload;

@@ -3,6 +3,8 @@
 import React from "react";
 import BlogSidebarLatestSingle from "./BlogSidebarLatestSingle";
 import { useGetAllBlogsQuery } from "@/redux/api/blog/blogApi";
+import { BlogPostSkelton } from "@/components/ui/blogPostSkelton";
+import { IBlog } from "@/interface";
 
 export default function BlogSidebar({
   title,
@@ -13,7 +15,7 @@ export default function BlogSidebar({
   variant: "horizontal" | "vertical";
   totalBlog: number;
 }) {
-  const { data } = useGetAllBlogsQuery(undefined);
+  const { data, isLoading } = useGetAllBlogsQuery(undefined);
   let className: string;
 
   if (variant === "horizontal") {
@@ -22,7 +24,6 @@ export default function BlogSidebar({
   } else {
     className = "md:px-4 lg:px-6 space-y-8";
   }
-  console.log(data);
 
   return (
     <div className="md:col-span-2 lg:col-span-1">
@@ -30,10 +31,17 @@ export default function BlogSidebar({
         {title}
       </h3>
       <div className={`bg-white uppercase rounded-b-xl py-6 px-3 ${className}`}>
-        <BlogSidebarLatestSingle variant={variant} />
-        <BlogSidebarLatestSingle variant={variant} />
-        <BlogSidebarLatestSingle variant={variant} />
-        <BlogSidebarLatestSingle variant={variant} />
+        {isLoading ? (
+          <BlogPostSkelton totalBlog={totalBlog} />
+        ) : (
+          data?.map((blog: IBlog) => (
+            <BlogSidebarLatestSingle
+              variant={variant}
+              key={blog.id}
+              blog={blog}
+            />
+          ))
+        )}
       </div>
     </div>
   );

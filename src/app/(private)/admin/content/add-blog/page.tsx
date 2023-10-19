@@ -45,6 +45,20 @@ export default function AddBlog() {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const { title, slug } = data;
     try {
+      // check all field has or not
+      if (
+        !title ||
+        !slug ||
+        !tagId ||
+        !blog ||
+        !updateBlogImage ||
+        !previewImg
+      ) {
+        return toast.error("Please fill all fields", {
+          position: "top-center",
+        });
+      }
+
       const cloudinaryUrl = await imageUpload(updateBlogImage as File);
 
       if (!cloudinaryUrl) {
@@ -61,17 +75,16 @@ export default function AddBlog() {
         thumbnail: cloudinaryUrl.url,
       };
 
-      console.log(blogData);
-
       // Send request to server
 
       const res = await createBlog(blogData).unwrap();
 
-      console.log(res);
-
       if (res.id) {
         reset();
         setBlog("");
+        setTagId("");
+        setPreviewImg("");
+        setUpdateBlogImage(null);
         toast.success("Blog created successfully", {
           position: "top-center",
         });
@@ -147,8 +160,8 @@ export default function AddBlog() {
         </div>
 
         <div className="mt-5 max-w-5xl min-h-[300px] mb-8">
-          <label htmlFor="blog">Write Your Post</label>
-          <TextEditor blog={blog} setBlog={setBlog} />
+          <label htmlFor="description">Write Your Post</label>
+          <TextEditor text={blog} setText={setBlog} />
         </div>
 
         <Button type="submit" className="w-[200px]">

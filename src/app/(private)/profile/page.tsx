@@ -73,12 +73,13 @@ export default function Profile() {
     const refreshed = removeEmptyProperties(data);
 
     if (Object.keys(refreshed).length === 0 && !updateProfileImage) return;
-    console.log(refreshed);
-    console.log(updateProfileImage);
 
     try {
       // check if image is updated
-      const cloudinaryResponse = await imageUpload(updateProfileImage);
+      let cloudinaryResponse = null;
+
+      if (updateProfileImage)
+        cloudinaryResponse = await imageUpload(updateProfileImage);
 
       if (!cloudinaryResponse) {
         return toast.error("Cant upload image", {
@@ -101,16 +102,16 @@ export default function Profile() {
           position: "top-center",
         });
       }
+
       setCanEdit(false);
       toast.success("Profile updated successfully.", {
         position: "top-center",
       });
+      form.reset();
     } catch (error: any) {
       console.log(error.message);
     }
   }
-
-  console.log(previewImg)
 
   return (
     <div className="my-5 max-w-4xl mx-auto rounded-md bg-white shadow-md p-5">

@@ -34,7 +34,7 @@ export default function HeroSlider() {
       }}
       modules={[Pagination]}
       className="homeSwiper !h-[550px] !cursor-pointer !bg-none z-40">
-      {slidesData.map((slide, index) => (
+      {slidesData?.map((slide, index) => (
         <SwiperSlide
           className="!bg-transparent !bg-center !bg-cover"
           key={index}

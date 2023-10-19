@@ -30,6 +30,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   //@ts-ignore
   function (response) {
+    console.log("response", response)
     const responseObject: ResponseSuccessType = {
       data: response?.data?.data,
       meta: response?.data?.meta,
@@ -38,6 +39,7 @@ instance.interceptors.response.use(
   },
   async function (error) {
     const config = error?.config;
+    console.log("error", error);
 
     if (error?.response?.status === 403 && !config?.sent) {
       config.sent = true;

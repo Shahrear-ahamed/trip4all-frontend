@@ -5,6 +5,8 @@ const apiUrl = {
   feedback_url: "/feedbacks",
   tag_url: "/tags",
   user_url: "/users",
+  category_url: "/categories",
+  service_url: "/services",
 };
 
 export default apiUrl;

@@ -17,15 +17,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useGetAllTagsQuery } from "@/redux/api/tag/tagApi";
-import { ITag } from "@/interface";
+import { ICategory } from "@/interface";
+import { useGetAllCategoriesQuery } from "@/redux/api/category/categoryApi";
 
 type ISelectProps = {
-  setTagId: (id: string) => void;
+  setCategoryId: (id: string) => void;
 };
 
-export default function SelectTag({ setTagId }: ISelectProps) {
-  const { data, isLoading } = useGetAllTagsQuery(undefined);
+export default function SelectCategory({ setCategoryId }: ISelectProps) {
+  const { data, isLoading } = useGetAllCategoriesQuery(undefined);
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -38,30 +38,32 @@ export default function SelectTag({ setTagId }: ISelectProps) {
           aria-expanded={open}
           className="w-full justify-between">
           {value
-            ? data?.find((tag: ITag) => tag.name === value)?.name
+            ? data?.find(
+                (category: ICategory) => category.name.toLowerCase() === value
+              )?.name
             : "Select tag..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command>
-          <CommandInput placeholder="Search tags..." className="h-9" />
+          <CommandInput placeholder="Search categories..." className="h-9" />
           <CommandEmpty>No tag found.</CommandEmpty>
           <CommandGroup>
             {!isLoading &&
-              data?.map((tag: ITag) => (
+              data?.map((category: ICategory) => (
                 <CommandItem
-                  key={tag.name}
+                  key={category.id}
                   onSelect={(currentValue) => {
                     setValue(currentValue);
-                    setTagId(tag.id);
+                    setCategoryId(category.id);
                     setOpen(false);
                   }}>
-                  {tag.name}
+                  {category.name}
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === tag.name ? "opacity-100" : "opacity-0"
+                      value === category.name ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
