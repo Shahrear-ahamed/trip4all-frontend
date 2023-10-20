@@ -201,6 +201,15 @@ export const sidebarItems = (role: string) => {
         },
       ],
     },
+    {
+      label: (
+        <Link href={`/${role}/feedback`} className="w-full my-5">
+          feedback
+        </Link>
+      ),
+      icon: FaQ,
+      key: `/${role}/feedback`,
+    },
   ];
 
   const superAdminSidebarItems = [
@@ -258,13 +267,38 @@ export const sidebarItems = (role: string) => {
   const userSidebarItems = [
     ...defaultSidebarItems,
     {
+      label: "Review",
+      icon: CgProfile,
+      children: [
+        {
+          label: (
+            <Link href={`/${role}/review/give-review`} className="w-full my-5">
+              Give review
+            </Link>
+          ),
+          icon: FaUserNurse,
+          key: `/${role}/review/give-review`,
+        },
+        {
+          label: (
+            <Link href={`/${role}/review/my-review`} className="w-full my-5">
+              My Review
+            </Link>
+          ),
+          icon: BiKey,
+          key: `/${role}/review/my-review`,
+        },
+      ],
+    },
+    ,
+    {
       label: (
-        <Link href={`/${role}/my-reviews`} className="w-full my-5">
-          My Reviews
+        <Link href={`/${role}/feedback`} className="w-full my-5">
+          Feedback
         </Link>
       ),
       icon: MdRateReview,
-      key: `/${role}/my-reviews`,
+      key: `/${role}/feedback`,
     },
   ];
 

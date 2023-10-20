@@ -41,6 +41,20 @@ export const serviceApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.service],
     }),
+    getStatusServices: build.query({
+      query: (status: string) => ({
+        url: `${apiUrl.service_url}/home/${status}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.service],
+    }),
+    getServiceByCategory: build.query({
+      query: (category: string) => ({
+        url: `${apiUrl.service_url}/home`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.service],
+    }),
   }),
 });
 
@@ -50,4 +64,6 @@ export const {
   useGetAllServicesQuery,
   useGetSingleServiceQuery,
   useUpdateSingleServiceMutation,
+  useGetStatusServicesQuery,
+  useGetServiceByCategoryQuery,
 } = serviceApi;

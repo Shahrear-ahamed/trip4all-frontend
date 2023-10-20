@@ -7,6 +7,8 @@ const apiUrl = {
   user_url: "/users",
   category_url: "/categories",
   service_url: "/services",
+  booking_url: "/bookings",
+  review_url: "/reviews",
 };
 
 export default apiUrl;

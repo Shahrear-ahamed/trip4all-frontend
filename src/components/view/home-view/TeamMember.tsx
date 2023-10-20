@@ -1,5 +1,4 @@
-import CustomAvatar from "@/components/ui/CustomAvatar";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import Image from "next/image";
 import React from "react";
 
 export default function TeamMember() {
@@ -36,9 +35,12 @@ export default function TeamMember() {
             key={index}
             className="relative min-w-[220px] w-full lg:w-[60%] xl:w-[80%] hover:shadow-md px-5 py-8 rounded-md duration-300 bg-white mt-14">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <CustomAvatar
-                className="h-20 w-20 my-5 rounded-full border-2 border-primary"
-                AltName={member.name}
+              <Image
+                height={40}
+                width={40}
+                src="https://github.com/shadcn.png"
+                alt=" image"
+                className="!w-24 !h-24 !rounded-full"
               />
             </div>
 

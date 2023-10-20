@@ -58,10 +58,6 @@ export default function AddService() {
         });
       }
 
-      toast.loading("Please wait...", {
-        position: "top-center",
-      });
-
       const cloudinaryUrl = await imageUpload(updateServiceImage as File);
 
       if (!cloudinaryUrl) {
@@ -76,7 +72,9 @@ export default function AddService() {
         slots: Number(slots),
         status,
         categoryId,
-        availableDate: format(date, "yyyy-MM-dd HH:mm:ss.SSS"),
+        availableDate: new Date(
+          format(date, "yyyy-MM-dd HH:mm:ss.SSS")
+        ).toISOString(),
         description: description,
         thumbnail: cloudinaryUrl.url,
       };

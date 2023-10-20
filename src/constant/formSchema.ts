@@ -167,3 +167,13 @@ export const updateServiceFormSchema = z.object({
   categoryId: z.string().optional(),
   status: z.string().optional(),
 });
+
+export const feedbackFormSchema = z.object({
+  comment: z.string().min(1).max(1000),
+});
+
+export const reviewFormSchema = z.object({
+  comment: z.string().min(1).max(1000),
+  rating: z.number().int().min(1).max(5),
+  serviceId: z.string().uuid(),
+});

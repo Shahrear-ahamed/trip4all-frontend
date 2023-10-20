@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -34,6 +33,7 @@ import {
 } from "@/redux/api/user/userApi";
 import { toast } from "react-toastify";
 import imageUpload from "@/utils/imageUpload";
+import Image from "next/image";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -125,21 +125,24 @@ export default function Profile() {
               render={({ field }) => (
                 <div className="flex items-center space-x-6 relative justify-center">
                   <div className="shrink-0 w-20 h-20">
-                    <Avatar className="w-full h-full">
+                    <div className="w-full h-full">
                       {canEdit ? (
-                        <AvatarImage
+                        <Image
+                          height={40}
+                          width={40}
                           src={previewImg}
-                          alt="change profile image"
-                          className="w-20 h-20"
+                          alt="avatar image"
+                          className="!w-20 !h-20 !rounded-full"
                         />
                       ) : (
-                        <AvatarImage
+                        <Image
+                          height={40}
+                          width={40}
                           src={data?.avatar ? data?.avatar : previewImg}
-                          alt="change profile image"
-                          className="w-20 h-20"
+                          alt="avatar image"
+                          className="!w-20 !h-20 !rounded-full"
                         />
                       )}
-                      <AvatarFallback>CN</AvatarFallback>
                       {canEdit && (
                         <label className="inline absolute h-full w-full !ml-0 cursor-pointer">
                           <span className="sr-only">Choose photo</span>
@@ -157,7 +160,7 @@ export default function Profile() {
                           />
                         </label>
                       )}
-                    </Avatar>
+                    </div>
                   </div>
                 </div>
               )}

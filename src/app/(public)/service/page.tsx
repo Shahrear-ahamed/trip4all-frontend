@@ -1,19 +1,23 @@
-import {
-  ErrorAlert,
-  InfoAlert,
-  LoadingAlert,
-  SuccessAlert,
-  WarnAlert,
-} from "@/components/ui/myAlerts";
+import SingleTour from "@/components/ui/SingleTour";
+import { getBaseUrl } from "@/helpers/config/envConfig";
+import { IService } from "@/interface";
 
-export default function ServicePage() {
+export default async function ServicePage() {
+  const res = await fetch(`${getBaseUrl()}/services?limit=5`, {
+    cache: "no-cache",
+  });
+  const resJson = await res.json();
+
+  const meta = resJson.data.meta;
+  const services = resJson.data.data;
+
+  console.log(services);
+
   return (
-    <div>
-      <LoadingAlert />
-      <InfoAlert message="Info" />
-      <WarnAlert message="Warning" />
-      <SuccessAlert message="Success" />
-      <ErrorAlert message="Something went wrong" />
-    </div>
+    <section className="">
+      {services?.map((tour: IService) => (
+        <SingleTour key={tour.id} tour={tour} />
+      ))}
+    </section>
   );
 }

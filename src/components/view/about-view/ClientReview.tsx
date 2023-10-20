@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 
 export default function ClientReview() {
   const travelReviews = [
@@ -41,10 +40,13 @@ export default function ClientReview() {
           className="shadow-lg rounded-md py-10 px-5 mx-2 lg:mx-10 my-5 cursor-pointer about-review-slider !w-[calc(100%-16px)] border bg-gray-200">
           <article className="flex flex-col items-center justify-center max-w-4xl mx-auto">
             <div className="flex flex-col items-center justify-center text-center text-sm max-w-3xl">
-              <Avatar className="h-24 w-24 my-5">
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              <Image
+                height={40}
+                width={40}
+                src="https://github.com/shadcn.png"
+                alt="avatar image"
+                className="!w-20 !h-20 !rounded-full"
+              />
 
               <p className="min-h-[60px]">{review.review}</p>
               <p className="mt-10 mb-3 text-xl">{review.name}</p>

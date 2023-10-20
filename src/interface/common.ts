@@ -96,3 +96,24 @@ export type Category = {
   catName: string;
   service: Service;
 };
+
+export type Status = "pending" | "confirmed" | "completed" | "cancelled";
+
+export type IBooking = {
+  id: string;
+  profileId: string;
+  serviceId: string;
+  cartId: string;
+  date: string;
+  status: Status;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type IFeedback = {
+  id: string;
+  profileId: string;
+  comment: string;
+  createdAt: string;
+  updatedAt: string;
+};
