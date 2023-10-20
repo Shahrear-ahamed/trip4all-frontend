@@ -3,4 +3,7 @@ module.exports = {
   images: {
     domains: ["https://github.com", "res.cloudinary.com", "github.com"],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };

@@ -10,7 +10,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useCreateBlogMutation } from "@/redux/api/blog/blogApi";
-import { IBlog } from "@/interface";
 
 interface FormValues {
   title: string;

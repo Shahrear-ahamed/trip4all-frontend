@@ -5,7 +5,6 @@ import Tours from "@/components/view/home-view/Tours";
 import WhatWeProvide from "@/components/view/home-view/WhatWeProvide";
 import TeamMember from "@/components/view/home-view/TeamMember";
 import WhatWeOffer from "@/components/view/home-view/WhatWeOffer";
-import OurServiceHome from "@/components/view/home-view/OurServiceHome";
 import BlogSidebar from "@/components/view/blog-view/BlogSidebar";
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <Navbar />
       <HeroSlider />
-      <OurServiceHome />
       <WhatWeProvide />
       <Tours status="ongoing" title="Available" />
       <Tours status="upcoming" title="Upcoming" />

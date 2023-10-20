@@ -53,42 +53,42 @@ export default function DashboardNavItems({
   return (
     <>
       <div className="text-gray-500 dark:text-gray-400">
-        {menuItems.map((item, idx) => (
+        {menuItems.map((item:any, idx) => (
           <Accordion
             type="single"
             collapsible
-            key={item.key ? item.key : idx}
+            key={item?.key ? item?.key : idx}
             className="border-b cursor-pointer">
             <AccordionItem value="item-1" className="border-b-0 w-40 mx-auto">
-              {item.children ? (
+              {item?.children ? (
                 <AccordionTrigger className="hover:no-underline">
                   <div
                     onClick={handleToggleMenu}
                     className="w-40 mx-auto flex items-center">
                     <item.icon className="w-6 h-6" />
-                    <span className="ml-5">{item.label}</span>
+                    <span className="ml-5">{item?.label}</span>
                   </div>
                 </AccordionTrigger>
               ) : (
                 <div
                   onClick={handleToggleMenu}
                   className={`w-40 py-4 mx-auto flex items-center ${
-                    item.key === pathname && "text-primary"
+                    item?.key === pathname && "text-primary"
                   }`}>
                   <item.icon className="w-6 h-6" />
-                  <span className="ml-5 text-sm">{item.label}</span>
+                  <span className="ml-5 text-sm">{item?.label}</span>
                 </div>
               )}
-              {item.children && (
+              {item?.children && (
                 <AccordionContent className="just-test">
-                  {item.children.map((child) => (
+                  {item?.children.map((child:any) => (
                     <div
                       key={child.key}
                       className={`w-full my-5 flex items-center ${
                         child.key === pathname && "text-primary"
                       }`}>
                       <child.icon className="w-6 h-6" />
-                      <span className="ml-3">{child.label}</span>
+                      <span className="ml-3">{child?.label}</span>
                     </div>
                   ))}
                 </AccordionContent>
