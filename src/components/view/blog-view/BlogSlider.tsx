@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Navigation } from "swiper/modules";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function BlogSlider() {
   return (
@@ -34,9 +35,12 @@ export default function BlogSlider() {
               </Link>
             </div>
           </div>
-          <img
+          <Image
+            height={550}
+            width={256}
             src="https://swiperjs.com/demos/images/nature-1.jpg"
             className="object-cover rounded-xl max-h-[550px] min-h-[256px] h-full w-full"
+            alt="blog image"
           />
         </SwiperSlide>
       </Swiper>

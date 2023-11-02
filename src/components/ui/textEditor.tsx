@@ -1,4 +1,13 @@
-import ReactQuill from "react-quill";
+"use client"
+
+import dynamic from "next/dynamic";
+
+// import ReactQuill from "react-quill";
+
+const ReactQuill = dynamic(import("react-quill"), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+});
 
 type ITextEditorProps = {
   text: string;
@@ -11,7 +20,6 @@ export default function TextEditor({ text, setText }: ITextEditorProps) {
       theme="snow"
       value={text}
       onChange={setText}
-      id="description"
       className="h-[300px]"
     />
   );

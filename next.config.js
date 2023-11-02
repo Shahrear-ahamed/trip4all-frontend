@@ -4,6 +4,6 @@ module.exports = {
     domains: ["https://github.com", "res.cloudinary.com", "github.com"],
   },
   typescript: {
-    ignoreBuildErrors: true,
+    // ignoreBuildErrors: true,
   },
 };
