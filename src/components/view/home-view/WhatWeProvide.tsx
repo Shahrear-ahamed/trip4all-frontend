@@ -55,7 +55,7 @@ export default function WhatWeProvide() {
             className="flex flex-col md:flex-row md:items-center md:justify-between space-y-5 px-6 py-10 bg-white hover:shadow-lg duration-500 rounded-md"
             key={index}>
             <div className="mr-7">
-              <item.icon className="text-4xl text-primary" />
+              <item.icon className="text-5xl text-primary" />
             </div>
             <div className="w-full">
               <h3 className="text-xl text-gray-700 font-bold mb-3">

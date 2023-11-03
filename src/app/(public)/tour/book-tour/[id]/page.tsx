@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import LoadingUi from "@/components/ui/loadingUi";
 import { IBooking } from "@/interface";
 import { useCreateBookingMutation } from "@/redux/api/booking/bookingApi";
-import { useGetSingleServiceQuery } from "@/redux/api/service/serviceApi";
+import { useGetSingleServiceQuery } from "@/redux/api/tour/tourApi";
 import Image from "next/image";
 import React from "react";
 import { toast } from "react-toastify";

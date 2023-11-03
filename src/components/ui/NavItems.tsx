@@ -12,8 +12,8 @@ const navLinks = [
     link: "/",
   },
   {
-    name: "Service",
-    link: "/service",
+    name: "Tour",
+    link: "/tour",
   },
   {
     name: "Blog",

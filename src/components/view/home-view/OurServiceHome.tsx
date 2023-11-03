@@ -35,7 +35,7 @@ export default function OurServiceHome() {
           ))}
         </div>
         <div className="mt-6 lg:mt-0">
-          <Link href="/service">
+          <Link href="/tour">
             <Button variant="secondary" className="px-5 py-3">
               Other Tours
             </Button>

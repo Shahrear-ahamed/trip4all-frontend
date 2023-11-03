@@ -2,7 +2,7 @@
 
 import SingleTour from "@/components/ui/SingleTour";
 import { IService } from "@/interface";
-import { useGetStatusServicesQuery } from "@/redux/api/service/serviceApi";
+import { useGetStatusToursQuery } from "@/redux/api/tour/tourApi";
 import React from "react";
 
 export default function Tours({
@@ -12,7 +12,7 @@ export default function Tours({
   status: string;
   title: string;
 }) {
-  const { data, isLoading } = useGetStatusServicesQuery(status);
+  const { data, isLoading } = useGetStatusToursQuery(status);
   return (
     <section className="bg-white py-10">
       <div className="container mx-auto">

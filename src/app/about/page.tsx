@@ -11,7 +11,6 @@ export default function AboutPage() {
     <>
       <Navbar />
       <BreadCrumbsContext title="About Us" />
-
       <main className="container my-5">
         <section className="my-8 sm:my-12 md:my-16 lg:my-20">
           <h1 className="text-4xl font-semibold text-center">Why Choose us</h1>

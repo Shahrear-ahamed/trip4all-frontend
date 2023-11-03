@@ -22,7 +22,7 @@ export default function WhatWeOffer() {
         <Link href="/tours">
           <Button
             variant="outline"
-            className="border-2 rounded-none border-white hover:border-primary hover:bg-primary text-white hover:text-white duration-500">
+            className="border-2 rounded-md border-white hover:border-primary hover:bg-primary text-white hover:text-white duration-500">
             Book a Tour Now
           </Button>
         </Link>

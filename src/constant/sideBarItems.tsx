@@ -68,21 +68,21 @@ export const sidebarItems = (role: string) => {
       children: [
         {
           label: (
-            <Link href={`/${role}/service`} className="w-full my-5">
-              View Services
+            <Link href={`/${role}/tour`} className="w-full my-5">
+              View tours
             </Link>
           ),
           icon: HiMiniViewfinderCircle,
-          key: `/${role}/service`,
+          key: `/${role}/tour`,
         },
         {
           label: (
-            <Link href={`/${role}/service/add-service`} className="w-full my-5">
-              Add Service
+            <Link href={`/${role}/tour/add-tour`} className="w-full my-5">
+              Add tour
             </Link>
           ),
           icon: AiFillFileAdd,
-          key: `/${role}/service/add-service`,
+          key: `/${role}/tour/add-tour`,
         },
         {
           label: (

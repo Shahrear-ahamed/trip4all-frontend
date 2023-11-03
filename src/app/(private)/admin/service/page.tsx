@@ -22,7 +22,7 @@ import Image from "next/image";
 import {
   useDeleteSingleServiceMutation,
   useGetAllServicesQuery,
-} from "@/redux/api/service/serviceApi";
+} from "@/redux/api/tour/tourApi";
 
 export default function AllServices() {
   const [deleteService] = useDeleteSingleServiceMutation();

@@ -14,7 +14,7 @@ const RatingStar = ({ rate }: { rate: number }) => {
   };
 
   return (
-    <div className="flex space-x-2 items-center">
+    <div className="flex space-x-2 items-center text-sm">
       <div className="flex space-x-1 items-center">
         {[...Array(5)].map((star, index) => (
           <span key={index}>{returnStar(index + 1)}</span>

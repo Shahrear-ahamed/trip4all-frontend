@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React from "react";
 
 export default function TeamMember() {
@@ -29,23 +29,21 @@ export default function TeamMember() {
       <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold my-10">
         Different People — One Mission
       </h2>
-      <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">
+      <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center max-w-5xl mx-auto">
         {members.map((member, index) => (
           <div
             key={index}
-            className="relative min-w-[220px] w-full lg:w-[60%] xl:w-[80%] hover:shadow-md px-5 py-8 rounded-md duration-300 bg-white mt-14">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <Image
-                height={40}
-                width={40}
+            className="relative w-full max-w-xs hover:shadow-md px-5 py-8 rounded-md duration-300 bg-white mt-14">
+            <Avatar className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full">
+              <AvatarImage
                 src="https://github.com/shadcn.png"
-                alt=" image"
-                className="!w-24 !h-24 !rounded-full"
+                alt={member.name + " profile image"}
               />
-            </div>
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
 
-            <div className="mt-10 text-center text-lg space-y-2">
-              <h5>{member.name}</h5>
+            <div className="mt-7 text-center text-lg space-y-2">
+              <h5 className="text-2xl">{member.name}</h5>
               <span className="text-sm text-primary inline-block">
                 {member.designation}
               </span>

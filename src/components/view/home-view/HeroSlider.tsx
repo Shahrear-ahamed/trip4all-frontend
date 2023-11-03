@@ -42,15 +42,15 @@ export default function HeroSlider() {
             backgroundImage: `url(${slide.img})`,
           }}>
           <div className="container flex h-full items-center">
-            <div className="text-left max-w-5xl w-[90%] mx-auto bg-gray-300 bg-opacity-50 px-3 sm:px-4 md:px-10 py-3 sm:py-4 md:py-10 rounded-md">
+            <div className="text-left max-w-5xl w-[90%] mx-auto bg-gray-700 text-white bg-opacity-50 px-3 sm:px-4 md:px-10 py-3 sm:py-4 md:py-10 rounded-md">
               <p className="uppercase">{slide.description}</p>
               <h2 className="mt-5 mb-10 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
                 {slide.title}
               </h2>
-              <Link href="/about">
+              <Link href="/tour">
                 <Button
                   variant={"outline"}
-                  className="rounded-none border-primary hover:bg-primary text-primary hover:text-white hover:border-primary duration-500 py-7 px-12 text-lg uppercase">
+                  className="rounded-md border-white hover:bg-primary text-white hover:text-white hover:border-primary duration-500 py-7 px-12 uppercase text-base">
                   Get in touch
                 </Button>
               </Link>

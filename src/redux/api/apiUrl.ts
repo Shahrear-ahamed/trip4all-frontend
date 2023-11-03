@@ -6,7 +6,7 @@ const apiUrl = {
   tag_url: "/tags",
   user_url: "/users",
   category_url: "/categories",
-  service_url: "/services",
+  tour_url: "/services",
   booking_url: "/bookings",
   review_url: "/reviews",
 };
