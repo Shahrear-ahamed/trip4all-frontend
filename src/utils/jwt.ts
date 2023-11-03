@@ -1,5 +1,9 @@
 import jwtDecode from "jwt-decode";
 
 export const decodedToken = (token: string) => {
-  return jwtDecode(token);
+  try {
+    return jwtDecode(token);
+  } catch (error) {
+    return null;
+  }
 };

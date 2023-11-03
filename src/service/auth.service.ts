@@ -10,12 +10,20 @@ export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
 
 export const getUserInfo = () => {
   const authToken = getFromLocalStorage(authKey);
-  if (authToken) {
-    const decodedData = decodedToken(authToken);
-    return decodedData;
-  } else {
+
+  // check if is any token present
+  if (!authToken) {
     return "";
   }
+
+  // decode token
+  const decodedData = decodedToken(authToken);
+
+  if (!decodedData) {
+    return "";
+  }
+
+  return decodedData;
 };
 
 export const isLoggedIn = () => {

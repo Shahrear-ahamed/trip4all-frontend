@@ -24,27 +24,24 @@ import {
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { profileFormSchema } from "@/constant/formSchema";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { bloodGroups } from "@/constant/global";
 import removeEmptyProperties from "@/utils/removeEmptyProperties";
+import { toast } from "react-toastify";
+import imageUpload from "@/utils/imageUpload";
+import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   useGetProfileQuery,
   useUpdateProfileMutation,
 } from "@/redux/api/user/userApi";
-import { toast } from "react-toastify";
-import imageUpload from "@/utils/imageUpload";
-import Image from "next/image";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export default function Profile() {
   const [previewImg, setPreviewImg] = useState("https://github.com/shadcn.png");
   const [updateProfileImage, setUpdateProfileImage] = useState<any>();
-  const {
-    data,
-    isSuccess: profileSuccess,
-    isLoading: profileLoading,
-  } = useGetProfileQuery(undefined, {
+  const { data, isLoading: profileLoading } = useGetProfileQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const [updateProfile, {}] = useUpdateProfileMutation();
@@ -125,24 +122,21 @@ export default function Profile() {
               render={({ field }) => (
                 <div className="flex items-center space-x-6 relative justify-center">
                   <div className="shrink-0 w-20 h-20">
-                    <div className="w-full h-full">
+                    <Avatar className="w-full h-full">
                       {canEdit ? (
-                        <Image
-                          height={40}
-                          width={40}
-                          src={previewImg}
-                          alt="avatar image"
-                          className="!w-20 !h-20 !rounded-full"
+                        <AvatarImage
+                          src={data?.avatar ? data?.avatar : previewImg}
+                          alt="change profile image"
+                          className="w-20 h-20"
                         />
                       ) : (
-                        <Image
-                          height={40}
-                          width={40}
+                        <AvatarImage
                           src={data?.avatar ? data?.avatar : previewImg}
-                          alt="avatar image"
-                          className="!w-20 !h-20 !rounded-full"
+                          alt="change profile image"
+                          className="w-20 h-20"
                         />
                       )}
+                      <AvatarFallback>PIC</AvatarFallback>
                       {canEdit && (
                         <label className="inline absolute h-full w-full !ml-0 cursor-pointer">
                           <span className="sr-only">Choose photo</span>
@@ -160,7 +154,7 @@ export default function Profile() {
                           />
                         </label>
                       )}
-                    </div>
+                    </Avatar>
                   </div>
                 </div>
               )}
@@ -211,9 +205,6 @@ export default function Profile() {
                       )}
                     />
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -298,8 +289,7 @@ export default function Profile() {
                     />
                   </FormControl>
                   <FormDescription>
-                    You can <span>@mention</span> other users and organizations
-                    to link to them.
+                    Tell us a little bit about yourself
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

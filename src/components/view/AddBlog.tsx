@@ -10,7 +10,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useCreateBlogMutation } from "@/redux/api/blog/blogApi";
-import ReactQuill from "react-quill";
 
 interface FormValues {
   title: string;
@@ -160,11 +159,7 @@ export default function AddBlog() {
 
         <div className="mt-5 max-w-5xl min-h-[300px] mb-8">
           <label htmlFor="description">Write Your Post</label>
-          {/* <TextEditor text={blog} setText={setBlog} /> */}
-          {typeof window !== "undefined" && (
-            <TextEditor text={blog} setText={setBlog} />
-          )}
-          {/* <ReactQuill theme="snow" value={blog} onChange={setBlog} /> */}
+          <TextEditor text={blog} setText={setBlog} />
         </div>
 
         <Button type="submit" className="w-[200px]">

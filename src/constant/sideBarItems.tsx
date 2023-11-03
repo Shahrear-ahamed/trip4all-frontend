@@ -63,15 +63,6 @@ export const sidebarItems = (role: string) => {
   const adminSidebarItems = [
     ...defaultSidebarItems,
     {
-      label: (
-        <Link href={`/${role}/manage-user`} className="w-full my-5">
-          Manage Users
-        </Link>
-      ),
-      icon: AiOutlineUserSwitch,
-      key: `/${role}/manage-user`,
-    },
-    {
       label: "Service",
       icon: MdHomeRepairService,
       children: [

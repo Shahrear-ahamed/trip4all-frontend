@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { useCreateServiceMutation } from "@/redux/api/service/serviceApi";
 import SelectCategory from "@/components/ui/CategorySelect";
 import SingleCalender from "@/components/ui/singleCalender";
-import ReactQuill from "react-quill";
 
 interface FormValues {
   title: string;
@@ -216,11 +215,8 @@ export default function AddService() {
           <label htmlFor="description" className="mb-2">
             Write Your Service Description
           </label>
-          {/* <TextEditor text={description} setText={setDescription} /> */}
-          {/* <ReactQuill theme="snow" value={description} onChange={setDescription} /> */}
-          {typeof window !== "undefined" && (
-            <TextEditor text={description} setText={setDescription} />
-          )}
+
+          <TextEditor text={description} setText={setDescription} />
         </div>
 
         <Button type="submit" className="w-[200px]">

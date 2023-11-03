@@ -13,7 +13,6 @@ export default function Tours({
   title: string;
 }) {
   const { data, isLoading } = useGetStatusServicesQuery(status);
-  console.log(data);
   return (
     <section className="bg-white py-10">
       <div className="container mx-auto">
@@ -22,7 +21,7 @@ export default function Tours({
         </h2>
 
         <div>
-          {!isLoading && data.length > 0 ? (
+          {!isLoading && data?.length > 0 ? (
             data?.map((tour: IService) => (
               <SingleTour key={tour.id} tour={tour} />
             ))

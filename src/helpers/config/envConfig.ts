@@ -1,6 +1,8 @@
 export const getBaseUrl = (): string => {
   return (
-    process.env.NEXT_PUBLIC_API_BASE_URL ||
-    "https://back-k9k02y7tm-its-shahrear.vercel.app/api/v1"
+    process.env.NODE_ENV === "development"
+      ? process.env.NEXT_PUBLIC_API_BASE_URL_DEV ||
+          "http://localhost:5000/api/v1"
+      : (process.env.NEXT_PUBLIC_API_BASE_URL_LIVE as string)
   );
 };
