@@ -9,9 +9,9 @@ import imageUpload from "@/utils/imageUpload";
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useCreateServiceMutation } from "@/redux/api/tour/tourApi";
 import SelectCategory from "@/components/ui/CategorySelect";
 import SingleCalender from "@/components/ui/singleCalender";
+import { useCreateTourMutation } from "@/redux/api/tour/tourApi";
 
 interface FormValues {
   title: string;
@@ -29,7 +29,7 @@ export default function AddService() {
   );
   const [description, setDescription] = useState("");
 
-  const [createService] = useCreateServiceMutation(undefined);
+  const [createService] = useCreateTourMutation(undefined);
 
   const {
     register,

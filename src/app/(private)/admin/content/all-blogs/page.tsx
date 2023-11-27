@@ -34,7 +34,9 @@ export default function AllBlog() {
   const handleDelete = async (id: string) => {
     try {
       const res = await deleteBlog(id).unwrap();
-      console.log(res);
+      if (!res.id) {
+        toast.error("Blog can't be deleted.");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +89,7 @@ export default function AllBlog() {
                     <Link href={`/admin/content/all-blogs/${blog.id}/edit`}>
                       <Button variant="ghost">Edit</Button>
                     </Link>
-                    <Link href={`/blog/${blog.slug}/`}>
+                    <Link href={`/blog/${blog.slug}/`} target="_blank">
                       <Button variant="ghost">View blog</Button>
                     </Link>
                     <Button

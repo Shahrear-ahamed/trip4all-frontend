@@ -10,24 +10,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  useDeleteSingleBlogMutation,
-  useGetAllBlogsQuery,
-} from "@/redux/api/blog/blogApi";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { DateTime } from "luxon";
-import { IBlog, IService } from "@/interface";
+import { IService } from "@/interface";
 import Image from "next/image";
 import {
-  useDeleteSingleServiceMutation,
-  useGetAllServicesQuery,
+  useDeleteSingleTourMutation,
+  useGetAllToursQuery,
 } from "@/redux/api/tour/tourApi";
 
 export default function AllServices() {
-  const [deleteService] = useDeleteSingleServiceMutation();
+  const [deleteService] = useDeleteSingleTourMutation();
 
-  const { data, isLoading, isSuccess, isError } = useGetAllServicesQuery(
+  const { data, isLoading, isSuccess, isError } = useGetAllToursQuery(
     undefined,
     {
       refetchOnMountOrArgChange: true,

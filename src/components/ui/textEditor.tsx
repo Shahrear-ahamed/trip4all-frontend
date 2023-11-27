@@ -1,13 +1,6 @@
-"use client"
-
-// import dynamic from "next/dynamic";
+"use client";
 
 import ReactQuill from "react-quill";
-
-// const ReactQuill = dynamic(import("react-quill"), {
-//   ssr: false,
-//   loading: () => <p>Loading ...</p>,
-// });
 
 type ITextEditorProps = {
   text: string;

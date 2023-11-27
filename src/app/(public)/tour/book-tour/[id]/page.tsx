@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import LoadingUi from "@/components/ui/loadingUi";
 import { IBooking } from "@/interface";
 import { useCreateBookingMutation } from "@/redux/api/booking/bookingApi";
-import { useGetSingleServiceQuery } from "@/redux/api/tour/tourApi";
+import { useGetSingleTourQuery } from "@/redux/api/tour/tourApi";
 import Image from "next/image";
 import React from "react";
 import { toast } from "react-toastify";
 
 export default function ServiceBook({ params }: { params: { id: string } }) {
-  const { data, isLoading, isSuccess } = useGetSingleServiceQuery(params.id);
+  const { data, isLoading, isSuccess } = useGetSingleTourQuery(params.id);
 
   const [createBooking, { isSuccess: bookingSuccess, isError: bookingError }] =
     useCreateBookingMutation();

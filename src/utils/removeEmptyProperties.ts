@@ -1,12 +1,16 @@
-export default function removeEmptyProperties(obj: any) {
+export default async function removeEmptyProperties(obj: any): Promise<any> {
+  const newObj: any = {};
+
   for (let propName in obj) {
     if (
-      obj[propName] === "" ||
-      obj[propName] === null ||
-      obj[propName] === undefined
+      obj.hasOwnProperty(propName) &&
+      obj[propName] !== "" &&
+      obj[propName] !== null &&
+      obj[propName] !== undefined
     ) {
-      delete obj[propName];
+      newObj[propName] = obj[propName];
     }
   }
-  return obj;
+
+  return newObj;
 }

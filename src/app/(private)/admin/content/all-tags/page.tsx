@@ -56,7 +56,6 @@ export default function AllTags() {
         <TableCaption>A list of recent tags.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-center text-xl">Id</TableHead>
             <TableHead className="text-center text-xl">Title</TableHead>
             <TableHead className="text-center text-xl">Created At</TableHead>
             <TableHead className="text-center text-xl">Action</TableHead>
@@ -66,7 +65,6 @@ export default function AllTags() {
           {isSuccess &&
             data?.map((tag: ITag) => (
               <TableRow key={tag.id}>
-                <TableCell className="max-w-[250px]">{tag.id}</TableCell>
                 <TableCell>{tag.name}</TableCell>
                 <TableCell>
                   {DateTime.fromISO(tag.createdAt, { zone: "utc" }).toFormat(

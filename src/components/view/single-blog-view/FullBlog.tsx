@@ -1,3 +1,4 @@
+import PortableText from "@/components/ui/PortableText";
 import { Button } from "@/components/ui/button";
 import { ISlugBlog } from "@/interface";
 import Link from "next/link";
@@ -10,10 +11,7 @@ export default function FullBlog({ blog }: { blog: ISlugBlog }) {
         <h1 className="text-2xl md:text-3xl lg:text-4xl mt-3 md:mt-5 pl-5 text-gray-700 font-semibold relative w-fit before:block before:content-[''] before:absolute before:bottom-0 before:left-0 before:h-full before:bg-gray-700 before:bg-opacity-40 before:w-1">
           {blog.title}
         </h1>
-        <div
-          dangerouslySetInnerHTML={{ __html: blog.body }}
-          className="text-justify text-gray-600 font-light tracking-wide leading-6 cursor-default mt-5"
-        />
+        <PortableText text={blog.body} />
       </div>
 
       <div className="my-10 w-full flex flex-col sm:flex-row gap-5 justify-between">

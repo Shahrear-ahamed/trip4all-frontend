@@ -20,16 +20,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { crateFaqFormSchema, tagFormSchema } from "@/constant/formSchema";
+import { crateFaqFormSchema } from "@/constant/formSchema";
 import { useCreateFaqMutation } from "@/redux/api/faq/faqApi";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 export default function AddFaqPage() {
-  const router = useRouter();
   const [createFaq, { isLoading }] = useCreateFaqMutation();
   const [isActive, setIsActive] = useState<string>("");
 
@@ -49,10 +48,14 @@ export default function AddFaqPage() {
       values.isActive = JSON.parse(isActive || "false");
 
       // 4. send request to server
-      // const res = await createFaq(values).unwrap();
-      form.reset();
+      const res = await createFaq(values).unwrap();
 
-      // console.log("This is res", res);
+      if (!res.id) {
+        toast.error("Faq can't be created.");
+      }
+
+      form.reset();
+      toast.success("Faq created successfully.");
     } catch (error: any) {
       console.log("This is err", error);
     }
@@ -60,7 +63,7 @@ export default function AddFaqPage() {
 
   return (
     <div className="my-5">
-      <h1 className="text-3xl font-semibold">This is add tag page.</h1>
+      <h1 className="text-3xl font-semibold">This is add fag page.</h1>
 
       <div className="max-w-[500px] my-5">
         <Form {...form}>
@@ -72,7 +75,7 @@ export default function AddFaqPage() {
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="sr-only" htmlFor="title">
+                      <FormLabel className="text-xs" htmlFor="title">
                         Title
                       </FormLabel>
                       <FormControl>
@@ -99,7 +102,7 @@ export default function AddFaqPage() {
                   name="body"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="sr-only" htmlFor="body">
+                      <FormLabel className="text-xs" htmlFor="body">
                         Body
                       </FormLabel>
                       <FormControl>
@@ -125,7 +128,7 @@ export default function AddFaqPage() {
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="sr-only" htmlFor="isActive">
+                      <FormLabel className="text-xs" htmlFor="isActive">
                         Is Active
                       </FormLabel>
                       <Select
