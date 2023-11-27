@@ -87,7 +87,7 @@ export default function UpdateBlog({ id }: { id: string }) {
         });
       }
 
-      const blogData = await removeEmptyProperties({
+      const blogData = removeEmptyProperties({
         title,
         tagId,
         body: blog,
